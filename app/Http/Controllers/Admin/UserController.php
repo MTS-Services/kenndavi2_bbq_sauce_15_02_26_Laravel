@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Services\DataTableService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -58,14 +60,21 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request)
     {
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'is_admin' => $request->is_admin ?? false,
-        ]);
+        $validated = $request->validated();
 
-        return redirect()->route('admin.users.index')->with('success', 'User created successfully.');
+        if ($request->hasFile('avatar')) {
+            $path = $request->file('avatar')->store('avatars', 'public');
+            $validated['avatar'] = $path;
+        }
+
+        // 2. Hash Password (Laravel doesn't do this automatically in User::create)
+        $validated['password'] = Hash::make($validated['password']);
+
+        // 3. Create User
+        User::create($validated);
+
+        return redirect()->route('admin.users.index')
+            ->with('success', 'User created successfully.');
     }
 
     public function show(User $user)

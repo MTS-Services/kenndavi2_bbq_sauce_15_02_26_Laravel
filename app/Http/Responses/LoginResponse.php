@@ -18,25 +18,9 @@ class LoginResponse implements LoginResponseContract
      */
     public function toResponse($request)
     {
-        $user = $request->user();
-
-        if ($user && $user->wheniwork_token) {
-            // Always sync WhenIWork users on login
-            Log::info('Dispatching WhenIWork users sync job on login', [
-                'user_id' => $user->id,
-            ]);
-            SyncWhenIWorkUsersJob::dispatch($user->id, $user->wheniwork_token);
-
-            // Sync availability based on config
-            if (config('availability.sync_mode') === 'login') {
-                SyncUserAvailabilityJob::dispatch(
-                    $user->id,
-                    $user->wheniwork_token
-                );
-            }
-        }
-
-        $redirect = route('dashboard');
+        $redirect = $request->user()->is_admin
+            ? route('admin.dashboard')
+            : route('user.dashboard');
 
         return $request->wantsJson()
             ? new JsonResponse(['two_factor' => false])

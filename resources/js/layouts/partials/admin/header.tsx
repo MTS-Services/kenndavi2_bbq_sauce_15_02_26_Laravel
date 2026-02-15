@@ -9,7 +9,7 @@ import {
     DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
 import { useInitials } from '@/hooks/use-initials';
-import { type BreadcrumbItem, type SharedData, type NavItemType } from '@/types';
+import { type BreadcrumbItem, type SharedData, type NavItem as NavItemType } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
 import { ChevronsLeft, ChevronsRight, Search, BellIcon, } from 'lucide-react';
 import * as React from 'react';
@@ -90,7 +90,7 @@ export function AdminHeader({ isCollapsed, setIsCollapsed }: AdminHeaderProps) {
                     >
                         <Search className="size-5! opacity-80 group-hover:opacity-100" />
                     </Button>
-                    <Separator orientation="vertical"/>
+                    <Separator orientation="vertical" />
                     <AppearanceToggleDropdown />
                     <div className="hidden lg:flex">
                         <TooltipProvider
@@ -100,6 +100,7 @@ export function AdminHeader({ isCollapsed, setIsCollapsed }: AdminHeaderProps) {
                             <Tooltip>
                                 <TooltipTrigger>
                                     <Button
+                                        asChild
                                         variant="ghost"
                                         size="icon"
                                         className="group h-9 w-9 cursor-pointer"

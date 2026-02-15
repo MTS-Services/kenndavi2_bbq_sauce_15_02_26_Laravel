@@ -108,7 +108,7 @@ export function DataTable<T extends Record<string, unknown>>({
                     onClick={() => onPageChange && onPageChange(1)}
                     variant="outline"
                     size="sm"
-                    className="datatable-pagination-number"
+                    className="datatable-pagination-number cursor-pointer"
                 >
                     1
                 </Button>
@@ -129,7 +129,7 @@ export function DataTable<T extends Record<string, unknown>>({
                     onClick={() => onPageChange && onPageChange(i)}
                     variant={i === pagination.current_page ? 'default' : 'outline'}
                     size="sm"
-                    className="datatable-pagination-number"
+                    className="datatable-pagination-number  cursor-pointer"
                 >
                     {i}
                 </Button>
@@ -150,7 +150,7 @@ export function DataTable<T extends Record<string, unknown>>({
                     onClick={() => onPageChange && onPageChange(pagination.last_page)}
                     variant="outline"
                     size="sm"
-                    className="datatable-pagination-number"
+                    className="datatable-pagination-number cursor-pointer"
                 >
                     {pagination.last_page}
                 </Button>
@@ -178,7 +178,7 @@ export function DataTable<T extends Record<string, unknown>>({
                         {localSearch && (
                             <button
                                 onClick={() => setLocalSearch('')}
-                                className="datatable-search-clear"
+                                className="datatable-search-clear cursor-pointer"
                             >
                                 <X className="h-4 w-4" />
                             </button>
@@ -208,7 +208,7 @@ export function DataTable<T extends Record<string, unknown>>({
                                     {localFilters[filter.key] ? (
                                         <button
                                             onClick={() => clearFilter(filter.key)}
-                                            className="datatable-filter-clear"
+                                            className="datatable-filter-clear cursor-pointer"
                                         >
                                             <X className="h-3.5 w-3.5" />
                                         </button>
@@ -335,7 +335,7 @@ export function DataTable<T extends Record<string, unknown>>({
                                                     <Button
                                                         variant="ghost"
                                                         size="sm"
-                                                        className="datatable-actions-trigger"
+                                                        className="datatable-actions-trigger cursor-pointer"
                                                     >
                                                         <Settings className="datatable-actions-icon" />
                                                     </Button>
@@ -387,7 +387,7 @@ export function DataTable<T extends Record<string, unknown>>({
                         disabled={pagination.current_page === 1}
                         variant="outline"
                         size="sm"
-                        className="datatable-pagination-nav"
+                        className="datatable-pagination-nav cursor-pointer"
                     >
                         <ChevronLeft className="h-4 w-4" />
                         <span className="datatable-pagination-nav-text">Previous</span>
@@ -400,7 +400,7 @@ export function DataTable<T extends Record<string, unknown>>({
                         disabled={pagination.current_page === pagination.last_page}
                         variant="outline"
                         size="sm"
-                        className="datatable-pagination-nav"
+                        className="datatable-pagination-nav cursor-pointer"
                     >
                         <span className="datatable-pagination-nav-text">Next</span>
                         <ChevronRight className="h-4 w-4" />

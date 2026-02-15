@@ -43,6 +43,7 @@ interface FileUploadProps {
     disabled?: boolean;
     className?: string;
     error?: string;
+    required?: boolean;
 }
 
 export default function FileUpload({
@@ -57,6 +58,7 @@ export default function FileUpload({
     disabled = false,
     className,
     error,
+    required = false,
 }: FileUploadProps) {
     const [isDragging, setIsDragging] = useState(false);
     const [filePreviews, setFilePreviews] = useState<FilePreview[]>([]);
@@ -253,6 +255,7 @@ export default function FileUpload({
                         accept={accept}
                         disabled={disabled}
                         className="hidden"
+                        required={required}
                     />
 
                     <div className="flex flex-col items-center justify-center text-center">

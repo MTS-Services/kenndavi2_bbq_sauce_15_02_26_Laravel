@@ -1,13 +1,13 @@
 import React from 'react';
 import { Head, router, Link } from '@inertiajs/react';
-import { show, edit, destroy, create } from '@/actions/App/Http/Controllers/Admin/UserController';
+import { show, edit, destroy, create } from '@/routes/admin/users';
 import { Pencil, Trash2, Eye } from 'lucide-react';
 import AdminLayout from '@/layouts/admin-layout';
 import { DataTable } from '@/components/ui/data-table';
 import { useDataTable } from '@/hooks/use-data-table';
 import { PaginationData, ColumnConfig, ActionConfig } from '@/types/data-table.types';
 import { Badge } from '@/components/ui/badge';
-import { User } from '@/types/user';
+import { User } from '@/types';
 import { Button } from '@/components/ui/button';
 
 interface Props {
@@ -60,14 +60,14 @@ export default function UsersIndex({
       ),
     },
     {
-        key: 'is_admin',
-        label: 'Is Admin',
-        sortable: false,
-        render: (user) => (
-            <Badge variant={user.is_admin ? 'default' : 'secondary'}>
-                {user.is_admin ? 'Yes' : 'No'}
-            </Badge>
-        ),
+      key: 'is_admin',
+      label: 'Is Admin',
+      sortable: false,
+      render: (user) => (
+        <Badge variant={user.is_admin ? 'default' : 'secondary'}>
+          {user.is_admin ? 'Yes' : 'No'}
+        </Badge>
+      ),
     },
     {
       key: 'created_at',
