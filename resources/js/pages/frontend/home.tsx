@@ -1,8 +1,16 @@
 import FrontendLayout from "@/layouts/frontend-layout";
-import { Link, usePage } from "@inertiajs/react";
+import { Link, usePage, useForm } from "@inertiajs/react";
 import { SharedData } from "@/types";
 
 export default function Home() {
+    const { data, setData, post, processing, errors, recentlySuccessful } = useForm({
+        email: '',
+    });
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        post('/subscribe');
+    };
     return (
         <FrontendLayout>
             <style dangerouslySetInnerHTML={{
@@ -90,19 +98,28 @@ export default function Home() {
 
                             {/* Email Form */}
                             <div className="max-w-xl mx-auto mb-3 md:mb-4 px-4">
-                                <form className="flex flex-col sm:flex-row gap-0 rounded-lg overflow-hidden">
+                                <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-0 rounded-lg overflow-hidden">
                                     <input
                                         type="email"
                                         placeholder="Your Email"
+                                        value={data.email}
+                                        onChange={(e) => setData('email', e.target.value)}
                                         className="flex-1 px-4 sm:px-5 py-2.5 sm:py-3 text-sm sm:text-base text-gray-700 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500 rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none"
                                     />
                                     <button
                                         type="submit"
-                                        className="bg-red-500 hover:bg-red-600 text-white font-semibold px-8 sm:px-10 py-2.5 sm:py-3 text-sm sm:text-base transition duration-300 rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none active:bg-red-700"
+                                        disabled={processing}
+                                        className="bg-red-500 hover:bg-red-600 text-white font-semibold px-8 sm:px-10 py-2.5 sm:py-3 text-sm sm:text-base transition duration-300 rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none active:bg-red-700 disabled:opacity-50"
                                     >
                                         Join
                                     </button>
                                 </form>
+                                {recentlySuccessful && (
+                                    <p className="text-center text-green-600 text-sm mt-2">Successfully subscribed!</p>
+                                )}
+                                {errors.email && (
+                                    <p className="text-center text-red-600 text-sm mt-2">{errors.email}</p>
+                                )}
                             </div>
 
                             {/* Social Proof */}

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { type NavItemType, type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { Users, User, BarChart, Shield, LayoutGrid, Settings } from 'lucide-react';
+import { Users, User, BarChart, Shield, LayoutGrid, Settings, Mail } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import { NavItem } from '@/components/ui/nav-item';
 // Navigation configuration
@@ -61,6 +61,12 @@ const adminNavItems: NavItemType[] = [
                 // ],
             },
         ],
+    },
+    {
+        title: 'Email Subscribers',
+        href: route('admin.email_subscribers.index'),
+        icon: Mail,
+        slug: 'email_subscribers',
     },
     // {
     //     title: 'Analytics',
