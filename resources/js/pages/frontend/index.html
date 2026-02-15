@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redefining Luxury - Northside</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Added a subtle topographical pattern to the background */
+            background-color: #ffffff;
+            background-image: url("Coming Soon.png");
+        }
+        
+        /* New Hero Background Image */
+        .hero-bg-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background-image: url('Coming Soon.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: -2;
+            border-radius: 50%;
+        }
+
+        .geometric-shape {
+            position: absolute;
+            opacity: 0.8;
+        }
+        
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 43px solid #10b981;
+        }
+        
+        .circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        
+        .hexagon {
+            width: 50px;
+            height: 43px;
+            background: #e0e7ff;
+            position: relative;
+            opacity: 0.5;
+        }
+        
+        .hexagon:before,
+        .hexagon:after {
+            content: "";
+            position: absolute;
+            width: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+        }
+        
+        .hexagon:before {
+            bottom: 100%;
+            border-bottom: 14px solid #e0e7ff;
+        }
+        
+        .hexagon:after {
+            top: 100%;
+            border-top: 14px solid #e0e7ff;
+        }
+        
+        .squiggle {
+            width: 60px;
+            height: 40px;
+        }
+        
+        .avatar-ring {
+            border: 2px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .illustration-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 640px) {
+            .illustration-container {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <div class="relative"> 
+        <!-- Header with Responsive Logo -->
+        <header class="relative z-10 py-4 sm:py-6 md:py-2">
+            <div class="container mx-auto px-4 flex justify-center">
+                <div class="w-32 sm:w-40 md:w-48 lg:w-auto">
+                    <img src="sauces.png" alt="Logo" class="w-full h-auto">
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="relative z-10 container mx-auto px-4 pt-4 sm:pt-8 md:pt-10">
+            <!-- Launch Badge -->
+            <div class="flex justify-center mb-4 sm:mb-6 md:mb-8">
+                <div class="inline-flex items-center bg-white border border-gray-200 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 shadow-sm">
+                    <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-red-500 rounded-full mr-2"></span>
+                    <span class="text-xs sm:text-sm text-gray-700">Launch Incoming</span>
+                </div>
+            </div>
+            
+            <!-- Hero Title - Fully Responsive -->
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-[#1B1B1B] font-inter font-medium text-center mb-4 sm:mb-6 text-gray-900 leading-tight px-2">
+                Redefining Luxury
+            </h1>
+            
+            <!-- Subtitle - Responsive Text Size -->
+            <p class="text-center text-[#262626] text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto mb-6 sm:mb-8 px-4 sm:px-6">
+                An exclusive collection crafted for the bold. Experience the fusion of modern aesthetics and timeless elegance.
+            </p>
+            
+            <!-- Email Form - Mobile Responsive -->
+            <div class="max-w-2xl mx-auto mb-4 sm:mb-6 px-4">
+                <form class="flex flex-col sm:flex-row gap-0 rounded-lg overflow-hidden shadow-lg">
+                    <input 
+                        type="email" 
+                        placeholder="Your Email" 
+                        class="flex-1 px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base text-gray-700 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500 rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none"
+                        required
+                    />
+                    <button 
+                        type="submit" 
+                        class="bg-red-500 hover:bg-red-600 text-white font-semibold px-8 sm:px-10 py-3 sm:py-4 text-sm sm:text-base transition duration-300 rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none active:bg-red-700"
+                    >
+                        Join
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Social Proof - Responsive Avatars -->
+            <div class="flex flex-col items-center mb-8 sm:mb-12">
+                <div class="flex -space-x-2 mb-1 sm:mb-2">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden ring-2 ring-white">
+                        <img src="Face 1.png" alt="User avatar" class="w-full h-full object-cover">
+                    </div>
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden ring-2 ring-white">
+                        <img src="Face 2.png" alt="User avatar" class="w-full h-full object-cover">
+                    </div>
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden ring-2 ring-white">
+                        <img src="Face 3.png" alt="User avatar" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <p class="text-xs sm:text-sm text-[#4E4E4E]">Join 39k other creatives</p>
+            </div>
+            
+            <!-- Illustration - Fully Responsive Sizing -->
+            <div class="illustration-container mb-12 sm:mb-16 lg:mb-20">
+            <div class="relative">
+                <div class="relative z-10 flex justify-center items-center px-4">
+                    <img 
+                        src="undraw_On_the_way_re_swjt 1.png" 
+                        alt="Illustration" 
+                        class=" max-w-sm sm:max-w-md md:max-w-lg lg:max-w-3xl h-auto"
+                    >
+                </div>
+            </div>
+        </div>
+        </main>
+    </div>
+</body>
+</html>
