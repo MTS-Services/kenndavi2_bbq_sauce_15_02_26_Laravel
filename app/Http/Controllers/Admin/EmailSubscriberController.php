@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\EmailSubscriber;
+use App\Services\DataTableService;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
@@ -11,14 +12,28 @@ use Inertia\Response;
 
 class EmailSubscriberController extends Controller
 {
+    public function __construct(private DataTableService $dataTableService) {}
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request): Response
     {
-        $subscribers = EmailSubscriber::latest()->get();
+        $query = EmailSubscriber::query();
+
+        $result = $this->dataTableService->process($query, $request, [
+            'searchable' => ['email'],
+            'sortable' => ['id', 'email', 'created_at'],
+        ]);
+
         return Inertia::render('admin/email_subscribers/index', [
-            'subscribers' => $subscribers,
+            'subscribers' => $result['data'],
+            'pagination' => $result['pagination'],
+            'offset' => $result['offset'],
+            'filters' => $result['filters'],
+            'search' => $result['search'],
+            'sortBy' => $result['sort_by'],
+            'sortOrder' => $result['sort_order'],
         ]);
     }
 
