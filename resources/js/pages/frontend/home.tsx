@@ -17,156 +17,173 @@ export default function Home() {
                 __html: `
                 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
-                .main_wrap {
-                    font-family: 'Inter', sans-serif;
-                    background-color: #ffffff;
-                    background-image: url("assets/images/Coming Soon.png");
-                    background-size: cover;
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    min-height: 100vh;
-                    height: 100vh;
-                    overflow: hidden;
-                    display: flex;
-                    flex-direction: column;
+                h1, h2, h3 {
+                font-family: 'Oswald', sans-serif;
                 }
 
-                .content-container {
-                    flex: 1;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    overflow: hidden;
+                /* Floating shapes */
+                .shape-triangle {
+                width: 0; height: 0;
+                border-left: 18px solid transparent;
+                border-right: 18px solid transparent;
+                border-bottom: 30px solid #22c55e;
                 }
 
+                .shape-circle-purple {
+                width: 18px; height: 18px;
+                border-radius: 50%;
+                background: #a855f7;
+                }
+
+                .arc-orange {
+                width: 52px;
+                height: 26px;
+                border-top: 4px solid #f97316;
+                border-radius: 50% 50% 0 0;
+                }
+
+                /* Image Backgrounds */
+                .img-top {
+                background-image: url('assets/images/img-top.jpg');
+                background-size: cover;
+                background-position: center;
+                }
+                .img-bottom {
+                background-image: url('assets/images/img-fire.jpg');
+                background-size: cover;
+                background-position: center;
+                }
+                .img-fire {
+                background-image: url('assets/images/img-bottom.jpg');
+                background-size: cover;
+                background-position: center;
+                }
+
+                /* Mobile specific adjustment for the grid */
                 @media (max-width: 768px) {
-                    .main_wrap {
-                        min-height: auto;
-                        height: auto;
-                        overflow: visible;
-                    }
-
-                    .content-container {
-                        overflow: visible;
-                    }
+                .left-panel-container {
+                    height: 40vh !important;
+                    width: 100% !important;
+                }
                 }
 
-                @keyframes float {
-                    0%, 100% { transform: translateY(0px) rotate(0deg); }
-                    50% { transform: translateY(-10px) rotate(5deg); }
+                /* Slide-in animation */
+                @keyframes fadeUp {
+                from { opacity: 0; transform: translateY(28px); }
+                to   { opacity: 1; transform: translateY(0); }
                 }
-
-                .float-animation {
-                    animation: float 3s ease-in-out infinite;
-                }
+                .animate-fade-up { animation: fadeUp 0.7s ease both; }
+                .delay-1 { animation-delay: 0.1s; }
+                .delay-2 { animation-delay: 0.25s; }
+                .delay-3 { animation-delay: 0.4s; }
+                .delay-4 { animation-delay: 0.55s; }
                 `}} />
-            <div className="relative main_wrap">
-                {/* Header with Responsive Logo */}
-                <section className="relative z-10 py-2 md:py-3 flex-shrink-0">
-                    <div className="container mx-auto px-4 flex justify-center">
-                        <div className="w-32 sm:w-40 md:w-44">
-                            <img src="assets/images/sauces.png" alt="Logo" className="w-full h-auto" />
-                        </div>
+            <div className="flex flex-col md:flex-row min-h-screen">
+                <div className="left-panel-container w-full md:w-[46%] grid grid-cols-2 grid-rows-2 md:h-screen gap-2 flex-shrink-0">
+                    <div className="img-top relative overflow-hidden ">
+                        <div className="absolute inset-0 bg-black/20" />
                     </div>
-                </section>
-
-                {/* Main Content - Flexbox controlled */}
-                <section className="relative z-10 container mx-auto px-4 flex-1 content-container">
-                    <div className="flex flex-col justify-center h-full max-w-7xl mx-auto">
-                        {/* Top Section - Launch Badge & Hero */}
-                        <div className="flex-shrink-0">
-                            {/* Launch Badge */}
-                            <div className="flex justify-center mb-3 md:mb-4">
-                                <div className="inline-flex items-center bg-white border border-gray-200 rounded-full px-3 sm:px-4 py-1.5 shadow-sm">
-                                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-red-500 rounded-full mr-2" />
-                                    <span className="text-xs sm:text-sm text-gray-700">
-                                        Launch Incoming
-                                    </span>
-                                </div>
+                    <div className="img-fire relative overflow-hidden row-span-1 md:row-span-2">
+                        <div className="absolute inset-0 bg-black/10" />
+                    </div>
+                    <div className="img-bottom relative overflow-hidden ">
+                        <div className="absolute inset-0 bg-black/10" />
+                    </div>
+                </div>
+                <div className="flex-1 flex items-center justify-center p-8 md:p-14 relative overflow-hidden">
+                    <div className="hidden sm:block absolute top-[10%] left-[10%] shape-triangle" />
+                    <div className="hidden sm:block absolute bottom-[15%] left-[5%] shape-circle-purple" />
+                    <div className="hidden sm:block absolute top-[10%] right-[10%] arc-orange" />
+                    <div className="hidden sm:block absolute top-[15%] right-[5%]">
+                        <svg width={38} height={26} viewBox="0 0 38 26" fill="none">
+                            <path
+                                d="M2 13 Q8 2, 14 13 Q20 24, 26 13 Q32 2, 38 13"
+                                stroke="#3b82f6"
+                                strokeWidth="3.5"
+                                fill="none"
+                                strokeLinecap="round"
+                            />
+                        </svg>
+                    </div>
+                    <div className="max-w-[520px] w-full text-center ">
+                        <div className="flex justify-center mb-6 delay-1">
+                            <img
+                                src="assets/images/Group.png"
+                                alt="Logo"
+                                className="w-20 h-20 md:w-24 md:h-24 object-contain"
+                            />
+                        </div>
+                        <div className="flex justify-center mb-5 delay-2">
+                            <div className="inline-flex items-center gap-2  px-4 py-1.5 rounded-full border border-red-100">
+                                <span className="w-2.5 h-2.5 rounded-full bg-red-500 inline-block" />
+                                <span className="text-sm text-gray-800 font-medium">
+                                    Launch Incoming
+                                </span>
                             </div>
-
-                            {/* Hero Title */}
-                            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[#1B1B1B] font-inter font-medium text-center mb-3 md:mb-4 text-gray-900 leading-tight px-2">
-                                Redefining Luxury
-                            </h1>
-
-                            {/* Subtitle */}
-                            <p className="text-center text-[#262626] text-sm sm:text-base md:text-lg max-w-2xl mx-auto mb-4 md:mb-5 px-4">
-                                An exclusive collection crafted for the bold. Experience the fusion of
-                                modern aesthetics and timeless elegance.
-                            </p>
-
-                            {/* Email Form */}
-                            <div className="max-w-xl mx-auto mb-3 md:mb-4 px-4">
-                                <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-0 rounded-lg overflow-hidden">
-                                    <input
-                                        type="email"
-                                        placeholder="Your Email"
-                                        value={data.email}
-                                        onChange={(e) => setData('email', e.target.value)}
-                                        className="flex-1 px-4 sm:px-5 py-2.5 sm:py-3 text-sm sm:text-base text-gray-700 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500 rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none"
+                        </div>
+                        <h1 className="text-4xl font-medium font-inter text-gray-900 leading-[1.1] mb-5 tracking-tight delay-3">
+                            Sign Up To Our Email List To Get Notified When We Launch
+                        </h1>
+                        <p className="text-gray-500 text-base md:text-lg mb-8 leading-relaxed delay-3">
+                            An exclusive collection crafted for the bold. Experience the fusion of
+                            modern aesthetics and timeless elegance.
+                        </p>
+                        <form onSubmit={handleSubmit} className="flex h-14 rounded-lg overflow-hidden shadow-sm border border-gray-200 mb-6 delay-4">
+                            <input
+                                type="email"
+                                className="flex-1 px-5 text-gray-800 outline-none bg-gray-100 placeholder:text-gray-400"
+                                placeholder="Your Email"
+                                value={data.email}
+                                onChange={(e) => setData('email', e.target.value)}
+                            />
+                            <button
+                                type="submit"
+                                disabled={processing}
+                                className="bg-red-500 hover:bg-red-600 text-white font-bold px-8 transition-colors uppercase tracking-wider text-sm"
+                            >
+                                Join
+                            </button>
+                        </form>
+                        {recentlySuccessful && (
+                            <p className="text-center text-green-600 text-sm mt-2">Successfully subscribed!</p>
+                        )}
+                        {errors.email && (
+                            <p className="text-center text-red-600 text-sm mt-2">{errors.email}</p>
+                        )}
+                        <div className="flex flex-col items-center justify-center gap-2 mt-6 delay-5">
+                            <div className="flex -space-x-3">
+                                <div className="w-10 h-10 rounded-full border-2 border-gray-900 bg-gray-900 flex items-center justify-center text-lg overflow-hidden">
+                                    <img
+                                        src="assets/images/Face 1.png"
+                                        alt="Face 1"
+                                        className="w-full h-full object-cover"
                                     />
-                                    <button
-                                        type="submit"
-                                        disabled={processing}
-                                        className="bg-red-500 hover:bg-red-600 text-white font-semibold px-8 sm:px-10 py-2.5 sm:py-3 text-sm sm:text-base transition duration-300 rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none active:bg-red-700 disabled:opacity-50"
-                                    >
-                                        Join
-                                    </button>
-                                </form>
-                                {recentlySuccessful && (
-                                    <p className="text-center text-green-600 text-sm mt-2">Successfully subscribed!</p>
-                                )}
-                                {errors.email && (
-                                    <p className="text-center text-red-600 text-sm mt-2">{errors.email}</p>
-                                )}
-                            </div>
-
-                            {/* Social Proof */}
-                            <div className="flex flex-col items-center mb-4 md:mb-6">
-                                <div className="flex -space-x-2 mb-1 sm:mb-2">
-                                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden ring-2 ring-white">
-                                        <img
-                                            src="assets/images/Face 1.png"
-                                            alt="User avatar"
-                                            className="w-full h-full object-cover"
-                                        />
-                                    </div>
-                                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden ring-2 ring-white">
-                                        <img
-                                            src="assets/images/Face 2.png"
-                                            alt="User avatar"
-                                            className="w-full h-full object-cover"
-                                        />
-                                    </div>
-                                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden ring-2 ring-white">
-                                        <img
-                                            src="assets/images/Face 3.png"
-                                            alt="User avatar"
-                                            className="w-full h-full object-cover"
-                                        />
-                                    </div>
                                 </div>
-                                <p className="text-xs sm:text-sm text-[#4E4E4E]">
+                                <div className="w-10 h-10 rounded-full border-2 border-gray-900 bg-gray-900 flex items-center justify-center text-lg overflow-hidden">
+                                    <img
+                                        src="assets/images/Face 2.png"
+                                        alt="Face 2"
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                                <div className="w-10 h-10 rounded-full border-2 border-gray-900 bg-gray-900 flex items-center justify-center text-lg overflow-hidden">
+                                    <img
+                                        src="assets/images/Face 3.png"
+                                        alt="Face 3"
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                            </div>
+                            <p className="text-gray-600 text-sm font-medium">
+                                <span className="font-bold text-gray-900">
                                     Join 39k other creatives
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* Illustration - Constrained height */}
-                        <div className="flex-1 flex items-end justify-center overflow-hidden" style={{ maxHeight: '40vh' }}>
-                            <div className="relative w-full flex justify-center items-end px-4">
-                                <img
-                                    src="assets/images/undraw_On_the_way_re_swjt 1.png"
-                                    alt="Illustration"
-                                    className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-2xl h-auto object-contain object-bottom"
-                                    style={{ maxHeight: '35vh' }}
-                                />
-                            </div>
+                                </span>
+                            </p>
                         </div>
                     </div>
-                </section>
+                </div>
             </div>
+
         </FrontendLayout>
     );
 }
